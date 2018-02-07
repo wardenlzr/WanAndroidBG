@@ -2,70 +2,118 @@ package demo.yb.com.wanandroid;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 
+import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.listener.CustomTabEntity;
+import com.flyco.tablayout.listener.OnTabSelectListener;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import demo.yb.com.wanandroid.adapter.GankAdapter;
 import demo.yb.com.wanandroid.entry.GankEntry;
+import demo.yb.com.wanandroid.entry.TabEntity;
 import demo.yb.com.wanandroid.http.GankLoader;
+import demo.yb.com.wanandroid.ui.GankFragment;
 import rx.Subscription;
 import rx.functions.Action1;
 
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.rv)
-    RecyclerView mRecyclerView;
-    private GankLoader mGankLoader;
-    private GankAdapter mAdapter;
+    @BindView(R.id.vp)
+    ViewPager mViewPager;
+    @BindView(R.id.tl)
+    CommonTabLayout mTabLayout_2;
+    private ArrayList<Fragment> mFragments = new ArrayList<>();
+
+    private String[] mTitles = {"首页", "体系", "项目", "收藏"};
+    private int[] mIconUnselectIds = {
+            R.mipmap.tab_home_unselect, R.mipmap.tab_speech_unselect,
+            R.mipmap.tab_contact_unselect, R.mipmap.tab_more_unselect};
+    private int[] mIconSelectIds = {
+            R.mipmap.tab_home_select, R.mipmap.tab_speech_select,
+            R.mipmap.tab_contact_select, R.mipmap.tab_more_select};
+    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mGankLoader = new GankLoader();
-        initView();
-        getGankList();
+        tl_2();
     }
 
-    private void initView() {
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.addItemDecoration(new MyItemDecoration());
-        mAdapter = new GankAdapter(mContext);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-
-    private void getGankList() {
-        Subscription subscription = mGankLoader.getGankList().subscribe(new Action1<List<GankEntry>>() {
+    private void tl_2() {
+        for (int i = 0; i < mTitles.length; i++) {
+            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+            mFragments.add(new GankFragment());
+        }
+        mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        mTabLayout_2.setTabData(mTabEntities);
+        mTabLayout_2.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
-            public void call(List<GankEntry> gankEntries) {
-                Log.i("BG", "gank size:" + gankEntries.size());
-                mAdapter.setData(gankEntries);
-                mAdapter.notifyDataSetChanged();
+            public void onTabSelect(int position) {
+                mViewPager.setCurrentItem(position);
             }
-        }, new Action1<Throwable>() {
+
             @Override
-            public void call(Throwable throwable) {
-                throwable.printStackTrace();
+            public void onTabReselect(int position) {
+                if (position == 0) {
+                    mTabLayout_2.showMsg(0, new Random().nextInt(100) + 1);
+                }
             }
         });
 
-        addSubscription(subscription);
-    }
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-    public static class MyItemDecoration extends RecyclerView.ItemDecoration {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mTabLayout_2.setCurrentTab(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        mViewPager.setCurrentItem(0);
+    }
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
         @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            outRect.set(0, 0, 20, 20);
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTitles[position];
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
         }
     }
+
+
 }
