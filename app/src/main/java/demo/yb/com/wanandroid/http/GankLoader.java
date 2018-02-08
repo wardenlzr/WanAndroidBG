@@ -12,7 +12,7 @@ import rx.functions.Func1;
 
 
 public class GankLoader extends BaseLoader {
-    private static final String GANK_URL = "http://gank.io/api/data/福利/50/1";
+    private static final String GANK_URL = "http://gank.io/api/data/福利/50/";//1
     private GankService mGankService ;
     public GankLoader(){
         mGankService = RetrofitManager.getInstance().create(GankService.class);
@@ -22,8 +22,8 @@ public class GankLoader extends BaseLoader {
      * 获取干货列表
      * @return
      */
-    public Observable<List<GankEntry>> getGankList(){
-        return observe(mGankService.getGank(GANK_URL)).map(new Func1<GankResp, List<GankEntry>>() {
+    public Observable<List<GankEntry>> getGankList(int page){
+        return observe(mGankService.getGank(GANK_URL+page)).map(new Func1<GankResp, List<GankEntry>>() {
             @Override
             public List<GankEntry> call(GankResp gankResp) {
                 return gankResp.results;

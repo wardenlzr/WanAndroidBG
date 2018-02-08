@@ -16,6 +16,7 @@
         android:layout_weight="1"/>
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/tl"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:background="#ffffff"

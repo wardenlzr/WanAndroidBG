@@ -64,4 +64,13 @@ public class BaseActivity extends AppCompatActivity {
     public void startAct(Class clazz) {
         startActivity(new Intent(mContext, clazz));
     }
+    /**
+     * 带参数的跳转Activity
+     * 2016年12月15日16:04:39
+     */
+    public void startAct(Class clazz, String text) {
+        Intent intent = new Intent(mContext, clazz);
+        intent.putExtra("url", text);
+        startActivity(intent);
+    }
 }

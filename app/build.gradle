@@ -18,7 +18,7 @@ android {
         }
     }
 }
-
+apply plugin: 'replugin-host-gradle'
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -41,4 +41,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
     compile 'com.blankj:utilcode:1.12.5'
+    compile 'com.qihoo360.replugin:replugin-host-lib:2.2.2'
 }

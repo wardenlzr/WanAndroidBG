@@ -1,8 +1,8 @@
 package demo.yb.com.wanandroid;
 
-import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
+import com.qihoo360.replugin.RePluginApplication;
 
 /**
  * Created on 2018/2/7  17:47.
@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.Utils;
  * @author yubin
  */
 
-public class BaseApp extends Application {
+public class BaseApp extends RePluginApplication {
     @Override
     public void onCreate() {
         super.onCreate();

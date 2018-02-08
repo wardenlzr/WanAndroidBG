@@ -12,15 +12,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import demo.yb.com.wanandroid.Main2Activity;
+import demo.yb.com.wanandroid.MainActivity;
 import demo.yb.com.wanandroid.R;
 import demo.yb.com.wanandroid.entry.GankEntry;
 
 
 public class GankAdapter extends RecyclerView.Adapter {
     private List<GankEntry> mGankEntries;
-    public Context mContext;
+    public MainActivity mContext;
 
-    public GankAdapter(Context mContext) {
+    public GankAdapter(MainActivity mContext) {
         this.mContext = mContext;
     }
 
@@ -36,12 +38,17 @@ public class GankAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         MyViewHolder viewHolder = (MyViewHolder) holder;
-        GankEntry entry = mGankEntries.get(position);
+        final GankEntry entry = mGankEntries.get(position);
 
         Picasso.with(mContext).load(entry.url).into(viewHolder.mImageView);
         viewHolder.descText.setText(entry.desc);
         viewHolder.authorText.setText(entry.who);
-
+        ((MyViewHolder) holder).mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mContext.startAct(Main2Activity.class, entry.url);
+            }
+        });
     }
 
     @Override
