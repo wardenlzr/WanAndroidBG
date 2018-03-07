@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.flyco.tablayout.CommonTabLayout;
@@ -48,16 +47,14 @@ public class MainActivity extends BaseActivity {
         SPUtils spUtils = SPUtils.getInstance();
         boolean study = spUtils.getBoolean("study");
         if (study) {
-//            startAct(ImgDetailActivity.class,"");
             try {
-//                RePlugin.startActivity(MainActivity.this, RePlugin.createIntent("com.qihoo360.replugin.sample.demo1", "com.qihoo360.replugin.sample.demo1.MainActivity"));
                 Intent intent = RePlugin.createIntent("top.jowanxu.wanandroidclient", "top.jowanxu.wanandroidclient.ui.activity.MainActivity");
                 RePlugin.startActivity(MainActivity.this,intent);
                 spUtils.put("study", false);
                 finish();
             } catch (Exception e) {
                 e.printStackTrace();
-                ToastUtils.showShort("插件出错！");
+                ToastUtils.showShort("插件出错！找360大大吧！");
             }
         }else {
             spUtils.put("study", true);
@@ -65,10 +62,10 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setTitle("玩什么Android，看妹纸吧！");
-        tl_2();
+        initGirlPage();
     }
 
-    private void tl_2() {
+    private void initGirlPage() {
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
             mFragments.add(new GankFragment());

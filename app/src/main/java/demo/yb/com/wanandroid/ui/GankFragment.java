@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import demo.yb.com.wanandroid.base.BaseFragment;
@@ -45,11 +46,11 @@ public class GankFragment extends BaseFragment {
         mRecyclerView.addItemDecoration(new MyItemDecoration());
         mAdapter = new GankAdapter((MainActivity)getActivity());
         mRecyclerView.setAdapter(mAdapter);
-    }
+}
 
 
     private void getGankList() {
-        java.util.Random random=new java.util.Random();// 定义随机类
+        Random random=new Random();// 定义随机类
         int result=random.nextInt(10)+1;
         Subscription subscription = mGankLoader.getGankList(result).subscribe(new Action1<List<GankEntry>>() {
             @Override
