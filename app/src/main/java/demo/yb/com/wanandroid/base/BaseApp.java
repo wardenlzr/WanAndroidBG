@@ -1,4 +1,4 @@
-package demo.yb.com.wanandroid;
+package demo.yb.com.wanandroid.base;
 
 
 import com.blankj.utilcode.util.Utils;

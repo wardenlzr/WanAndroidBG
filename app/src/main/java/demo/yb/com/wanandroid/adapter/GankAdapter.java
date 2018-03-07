@@ -1,6 +1,5 @@
 package demo.yb.com.wanandroid.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import demo.yb.com.wanandroid.Main2Activity;
-import demo.yb.com.wanandroid.MainActivity;
+import demo.yb.com.wanandroid.ui.ImgDetailActivity;
+import demo.yb.com.wanandroid.ui.MainActivity;
 import demo.yb.com.wanandroid.R;
 import demo.yb.com.wanandroid.entry.GankEntry;
 
@@ -46,7 +45,7 @@ public class GankAdapter extends RecyclerView.Adapter {
         ((MyViewHolder) holder).mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mContext.startAct(Main2Activity.class, entry.url);
+                mContext.startAct(ImgDetailActivity.class, entry.url);
             }
         });
     }

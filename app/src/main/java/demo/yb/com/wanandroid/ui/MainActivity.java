@@ -1,4 +1,4 @@
-package demo.yb.com.wanandroid;
+package demo.yb.com.wanandroid.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.flyco.tablayout.CommonTabLayout;
@@ -19,8 +20,9 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import demo.yb.com.wanandroid.R;
+import demo.yb.com.wanandroid.base.BaseActivity;
 import demo.yb.com.wanandroid.entry.TabEntity;
-import demo.yb.com.wanandroid.ui.GankFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -40,13 +42,13 @@ public class MainActivity extends BaseActivity {
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         RePlugin.preload("app");
         SPUtils spUtils = SPUtils.getInstance();
         boolean study = spUtils.getBoolean("study");
         if (study) {
-//            startAct(Main2Activity.class,"");
+//            startAct(ImgDetailActivity.class,"");
             try {
 //                RePlugin.startActivity(MainActivity.this, RePlugin.createIntent("com.qihoo360.replugin.sample.demo1", "com.qihoo360.replugin.sample.demo1.MainActivity"));
                 Intent intent = RePlugin.createIntent("top.jowanxu.wanandroidclient", "top.jowanxu.wanandroidclient.ui.activity.MainActivity");
@@ -60,11 +62,6 @@ public class MainActivity extends BaseActivity {
         }else {
             spUtils.put("study", true);
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setTitle("玩什么Android，看妹纸吧！");

@@ -7,11 +7,9 @@ import android.util.Log;
 import android.view.View;
 
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
-import demo.yb.com.wanandroid.BaseFragment;
-import demo.yb.com.wanandroid.MainActivity;
+import demo.yb.com.wanandroid.base.BaseFragment;
 import demo.yb.com.wanandroid.R;
 import demo.yb.com.wanandroid.adapter.GankAdapter;
 import demo.yb.com.wanandroid.entry.GankEntry;

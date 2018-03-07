@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="demo.yb.com.wanandroid.MainActivity">
+    tools:context="demo.yb.com.wanandroid.ui.MainActivity">
 
 
     <android.support.v4.view.ViewPager

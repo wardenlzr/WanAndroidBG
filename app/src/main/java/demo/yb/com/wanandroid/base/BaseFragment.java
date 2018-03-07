@@ -1,4 +1,4 @@
-package demo.yb.com.wanandroid;
+package demo.yb.com.wanandroid.base;
 
 import android.content.Context;
 import android.content.Intent;
