@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion '24.0.3'
 }
 apply plugin: 'replugin-host-gradle'
 dependencies {
