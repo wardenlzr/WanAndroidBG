@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">WanAndroid</string>
+    <string name="app_name_ceshi">测试版WanAndroid</string>
+    <string name="app_name_shengchan">生产版WanAndroid</string>
     <string name="title_activity_main2">Main2Activity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

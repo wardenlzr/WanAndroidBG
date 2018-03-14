@@ -19,6 +19,7 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import demo.yb.com.wanandroid.Config;
 import demo.yb.com.wanandroid.R;
 import demo.yb.com.wanandroid.base.BaseActivity;
 import demo.yb.com.wanandroid.entry.TabEntity;
@@ -62,6 +63,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setTitle("玩什么Android，看妹纸吧！");
+        ToastUtils.showShort(Config.hjText);
         initGirlPage();
     }
 

@@ -66,11 +66,11 @@ public class RetrofitManager {
     /**
      * 获取对应的Service
      *
-     * @param service Service 的 class
      * @param <T>
+     * @param service Service 的 class
      * @return
      */
-    public <T> T create(Class<T> service) {
+    public  <T> T create(Class<T> service) {
         return mRetrofit.create(service);
     }
 }
