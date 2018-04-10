@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 //apply plugin: 'android-apt'             //butterknife简便控件库
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
 //        applicationId "demo.yb.com.wanandroid"
         minSdkVersion 16
@@ -18,7 +18,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 
     //创建productFlavors
     productFlavors {
