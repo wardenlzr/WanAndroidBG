@@ -1,7 +1,7 @@
 # WanAndroidBG
-## 玩安卓非官方客户端
+## 玩安卓非官方客户端 http://www.wanandroid.com/
 
-
+#### 也许是一份RePlugin插件化的入门学习资料
 #### 也许是一份Retrofit + RxJava ＋ OkHttp的入门学习资料
 #### 效果如下
 ![截图1](http://img.blog.csdn.net/20180307151951339)
